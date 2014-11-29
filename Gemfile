@@ -43,3 +43,5 @@ gem 'geocoder'
 gem 'simple_form'
 gem 'quiet_assets', group: :development
 gem 'pry'
+gem 'songkickr'
+gem 'dotenv-rails'

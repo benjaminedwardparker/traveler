@@ -24,7 +24,7 @@ $(window).ready(function(){
   <% @venues.each do |venue| %>
   L.marker([<%= venue.location.lat %>, <%= venue.location.lng %>])
   .addTo(window.map)
-  .bindPopup("<b><%= venue.name %></b>");
+  .bindPopup("<b><%= venue.display_name %></b>");
   <% end %>
 });
 </script>

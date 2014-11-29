@@ -7,7 +7,9 @@ class PagesController < ApplicationController
       @lat = 29.76
       @lng = -95.38
     end
-    @venues = []
+    remote = Songkickr::Remote.new(ENV["SONGKICK_API_KEY"])
+    results = remote.events(location: "geo:#{@lat},#{@lng}", type: 'festival')
+    @venues = results.results
   end
 
   def visit
