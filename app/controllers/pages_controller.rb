@@ -1,9 +1,14 @@
 class PagesController < ApplicationController
+
   def home
     if params[:lat].present?
       @lat = params[:lat]
       @lng = params[:lng]
       @placename = params[:city]
+    elsif current_user
+      @lat = current_user.lat
+      @lng = current_user.lng
+      @placename = current_user.home_city
     else
       @lat = 29.76
       @lng = -95.38

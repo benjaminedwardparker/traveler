@@ -32,6 +32,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.string :name
       t.string :home_city
+      t.string :lat
+      t.string :lng
 
       t.timestamps
     end

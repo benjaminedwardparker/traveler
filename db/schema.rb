@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 20141203021638) do
     t.inet     "last_sign_in_ip"
     t.string   "name"
     t.string   "home_city"
+    t.string   "lat"
+    t.string   "lng"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
