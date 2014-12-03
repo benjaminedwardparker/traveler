@@ -22,7 +22,6 @@ class PagesController < ApplicationController
         @venues << result
       end
     end
-    # @venues = results.results
   end
 
   def visit
