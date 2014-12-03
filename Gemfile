@@ -45,3 +45,7 @@ gem 'quiet_assets', group: :development
 gem 'pry'
 gem 'songkickr'
 gem 'dotenv-rails'
+gem 'forecast_io'
+gem 'devise'
+gem 'bootstrap-sass'
+gem 'bootstrap-datepicker-rails'
