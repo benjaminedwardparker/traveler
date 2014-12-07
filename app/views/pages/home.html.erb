@@ -26,7 +26,6 @@ $(window).ready(function(){
   L.marker([<%= venue.location.lat %>, <%= venue.location.lng %>])
   .addTo(window.map)
   .bindPopup("<a href=<%= venue.uri %> target=_blank><%= venue.display_name %></a>");
-
   <% end %>
 });
 </script>
