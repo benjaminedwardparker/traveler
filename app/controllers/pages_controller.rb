@@ -15,7 +15,7 @@ class PagesController < ApplicationController
       @placename = "Houston"
     end
     remote = Songkickr::Remote.new(ENV["SONGKICK_API_KEY"])
-    results = remote.events(location: "geo:#{@lat},#{@lng}", type: 'festival')
+    results = remote.events(location: "geo:#{@lat},#{@lng}")#, type: 'festival')
     @venues = []
     results.results.each do |result|
       if result.location.lat.present?

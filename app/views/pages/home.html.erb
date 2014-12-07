@@ -1,5 +1,6 @@
 <%= simple_form_for :city, { url: visit_city_path } do |f| %>
-  <%= f.input :city %>
+  <%= f.text_field :city %>
+  <%= f.text_field :start_date, :id => "datepicker" %>
   <%= f.button :submit, "Visit!" %>
 <% end %>
 
@@ -24,8 +25,13 @@ $(window).ready(function(){
   <% @venues.each do |venue| %>
   L.marker([<%= venue.location.lat %>, <%= venue.location.lng %>])
   .addTo(window.map)
-  .bindPopup("<b><%= venue.display_name %></b>");
+  .bindPopup("<a href=<%= venue.uri %> target=_blank><%= venue.display_name %></a>");
+
   <% end %>
 });
 </script>
 <iframe style="background: lightgray" id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=<%= @lat %>&lon=<%= @lng %>&name=<%= @placename %>&color=#237FCE"> </iframe>
+
+<script>
+$('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+</script>
