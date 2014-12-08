@@ -15,7 +15,15 @@ class PagesController < ApplicationController
       @placename = "Houston"
     end
     remote = Songkickr::Remote.new(ENV["SONGKICK_API_KEY"])
-    results = remote.events(location: "geo:#{@lat},#{@lng}")#, type: 'festival')
+    if params[:start_date].present?
+      results = remote.events(location: "geo:#{@lat},#{@lng}",
+                              min_date: params[:start_date],
+                              max_date: params[:end_date])
+    else
+      results = remote.events(location: "geo:#{@lat},#{@lng}",
+                              min_date: "2014-12-21",
+                              max_date: "2014-12-30")#, type: 'festival')
+    end
     @venues = []
     results.results.each do |result|
       if result.location.lat.present?
@@ -29,6 +37,10 @@ class PagesController < ApplicationController
     results = Geocoder.search(@city)
     @lat = results.first.data["lat"].to_f.round(2)
     @lng = results.first.data["lon"].to_f.round(2)
-    redirect_to root_path({lat: @lat, lng: @lng, city: @city})
+    redirect_to root_path({lat: @lat,
+                           lng: @lng,
+                           city: @city,
+                           start_date: params[:city]["start_date"],
+                           end_date: params[:city]["end_date"]})
   end
 end

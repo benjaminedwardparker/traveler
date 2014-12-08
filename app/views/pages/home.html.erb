@@ -1,6 +1,7 @@
 <%= simple_form_for :city, { url: visit_city_path } do |f| %>
-  <%= f.text_field :city %>
-  <%= f.text_field :start_date, :id => "datepicker" %>
+  <%= f.text_field :city, placeholder: "City" %>
+  <%= f.text_field :start_date, :id => "datepicker", placeholder: "Trip Start Date" %>
+  <%= f.text_field :end_date, :id => "datepicker2", placeholder: "End Date"%>
   <%= f.button :submit, "Visit!" %>
 <% end %>
 
@@ -33,4 +34,7 @@ $(window).ready(function(){
 
 <script>
 $('#datepicker').datepicker({format: 'yyyy-mm-dd'});
+</script>
+<script>
+$('#datepicker2').datepicker({format: 'yyyy-mm-dd'});
 </script>
