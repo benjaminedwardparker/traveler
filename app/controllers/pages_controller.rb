@@ -20,9 +20,7 @@ class PagesController < ApplicationController
                               min_date: params[:start_date],
                               max_date: params[:end_date])
     else
-      results = remote.events(location: "geo:#{@lat},#{@lng}",
-                              min_date: "2014-12-21",
-                              max_date: "2014-12-30")#, type: 'festival')
+      results = remote.events(location: "geo:#{@lat},#{@lng}")#, type: 'festival')
     end
     @venues = []
     results.results.each do |result|
