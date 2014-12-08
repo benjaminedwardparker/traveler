@@ -1,8 +1,20 @@
 Rails.application.routes.draw do
+  get 'trips/index'
+
+  get 'trips/show'
+
+  get 'trips/edit'
+
+  get 'trips/create'
+
+  get 'trips/destroy'
+
   devise_for :users
   get 'pages/home'
   root to: 'pages#home'
   post 'visiting' => 'pages#visit', as: :visit_city
+
+  post 'trips' => 'trips#create', as: :create_trip
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

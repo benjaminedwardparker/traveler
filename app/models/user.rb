@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   geocoded_by :home_city,  :latitude => :lat, :longitude => :lng
   after_validation :geocode
+  has_many :trips
 
 
 end

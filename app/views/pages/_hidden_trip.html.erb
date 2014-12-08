@@ -1,0 +1,15 @@
+<%= simple_form_for @trip, url: create_trip_path(@trip) do |f| %>
+
+
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.hidden_field :lat, value: @this_trip.lat %>
+    <%= f.hidden_field :lng, value: @this_trip.lng %>
+    <%= f.hidden_field :city, value: @this_trip.city %>
+    <%= f.hidden_field :start_date, value: @this_trip.start_date %>
+    <%= f.hidden_field :end_date, value: @this_trip.end_date %>
+
+
+  <div class="form-actions">
+    <%= f.button :submit, "Save Trip!" %>
+  </div>
+<% end %>
