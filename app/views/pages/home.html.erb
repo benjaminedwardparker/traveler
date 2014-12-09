@@ -1,10 +1,15 @@
+<h3>Where would you like to see a few concerts?<h3>
 <%= simple_form_for :city, { url: visit_city_path } do |f| %>
   <%= f.text_field :city, placeholder: "City" %>
   <%= f.text_field :start_date, :id => "datepicker", placeholder: "Trip Start Date" %>
   <%= f.text_field :end_date, :id => "datepicker2", placeholder: "End Date"%>
   <%= f.button :submit, "Visit!" %>
 <% end %>
-
+<div class="float:right">
+<% if @this_trip.present? %>
+  <%= render 'hidden_trip' %>
+<% end %>
+</div>
 
 <div id="map"></div>
 <script>
@@ -31,9 +36,7 @@ $(window).ready(function(){
 });
 </script>
 
-<% if @this_trip.present? %>
-  <%= render 'hidden_trip' %>
-<% end %>
+
 
 <iframe style="background: lightgray" id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=<%= @lat %>&lon=<%= @lng %>&name=<%= @placename %>&color=#237FCE"> </iframe>
 

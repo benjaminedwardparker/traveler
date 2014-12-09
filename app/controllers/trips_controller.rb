@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
   def index
+    @trips = current_user.trips
   end
 
   def show
@@ -11,7 +12,7 @@ class TripsController < ApplicationController
   end
 
   def create
-    @trip = Trip.new(params.require(:trip).permit(:user_id, :blurb, :lat, :lng, :city, :start_date, :end_date))
+    @trip = Trip.new(trip_params)
     @trip.save
     redirect_to root_path(id: @trip.id)
   end

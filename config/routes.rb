@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post 'visiting' => 'pages#visit', as: :visit_city
 
   post 'trips' => 'trips#create', as: :create_trip
+  resources :trips
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

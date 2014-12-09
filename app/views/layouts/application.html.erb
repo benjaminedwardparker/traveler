@@ -11,19 +11,19 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<div style="height:8em;margin-bottom:2em;">
-
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% if current_user %>
+    <%= render '/layouts/user_navbar' %>
+  <% else %>
+    <%= render '/layouts/no_user_navbar' %>
+  <% end %>
+<div style="height:2em;margin-bottom:2em;">
 
   <% if current_user %>
-    <%= button_to "Sign Out", destroy_user_session_path, method: :delete %>
-    <h1>Hello, <%=current_user.name%>! </h2>
+    <h1>Hello, <%=current_user.name%>! </h1>
   <% else %>
-    <span class="btn btn-default" style="float:left;width:auto"><%= link_to "Sign In", new_user_session_path %></span>
-    <span class="btn btn-default" style="float:right;width:auto"><%= link_to "Sign Up", new_user_registration_path %></span>
+    <h1>Hello!<h1>
   <% end %>
+
 </div>
 
 <%= yield %>
