@@ -11,6 +11,13 @@ class TripsController < ApplicationController
   def edit
   end
 
+  def save_blurb
+    @trip = Trip.find(session[:saved_trip_id])
+    @trip.blurb = params[:blurb][:blurb]
+    @trip.save
+    redirect_to root_path(id: @trip.id)
+  end
+
   def create
     @trip = Trip.new(trip_params)
     @trip.save

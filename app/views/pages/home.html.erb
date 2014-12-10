@@ -11,7 +11,30 @@
 <% end %>
 </div>
 
-<div id="map"></div>
+<div class='row'>
+  <div class='col-md-9'>
+    <div id="map"></div>
+  </div>
+  <div class='col-md-3'>
+    <% if @saved_trip.present? %>
+      <% if !@saved_trip.blurb.present? %>
+        <%= simple_form_for :blurb, { url: save_blurb_path } do |f| %>
+          <%= f.text_field :blurb, :input_html => {:rows => 10} %>
+          <%= f.button :submit, "Save Blurb" %>
+        <% end %>
+      <% else %>
+        <%= simple_form_for :blurb, { url: save_blurb_path } do |f| %>
+          <%= f.text_field :blurb, placeholder: "#{@saved_trip.blurb}", :input_html => {:rows => 10} %>
+          <%= f.button :submit, "Save Blurb" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+<iframe style="background: lightgray" id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=<%= @lat %>&lon=<%= @lng %>&name=<%= @placename %>&color=#237FCE"> </iframe>
+
+
 <script>
 $(window).ready(function(){
 
@@ -35,10 +58,6 @@ $(window).ready(function(){
   <% end %>
 });
 </script>
-
-
-
-<iframe style="background: lightgray" id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=<%= @lat %>&lon=<%= @lng %>&name=<%= @placename %>&color=#237FCE"> </iframe>
 
 <script>
 $('#datepicker').datepicker({format: 'yyyy-mm-dd'});

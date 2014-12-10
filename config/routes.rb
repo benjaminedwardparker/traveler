@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   post 'trips' => 'trips#create', as: :create_trip
   resources :trips
+  post 'trips/save_blurb' => 'trips#save_blurb', as: :save_blurb
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

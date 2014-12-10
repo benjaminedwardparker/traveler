@@ -6,7 +6,7 @@ class PagesController < ApplicationController
       @lat = @saved_trip.lat
       @lng = @saved_trip.lng
       @placename = @saved_trip.city
-      
+      session[:saved_trip_id] = params[:id]
     else
       if params[:lat].present?
         @lat = params[:lat]
