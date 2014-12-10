@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
   def home
+    @points = Point.all
     if params[:id].present?
       @saved_trip = Trip.find(params[:id])
       @lat = @saved_trip.lat
@@ -62,4 +63,13 @@ class PagesController < ApplicationController
                            start_date: params[:city]["start_date"],
                            end_date: params[:city]["end_date"]})
   end
+
+  def create
+    @point = Point.new(params.require(:point).permit(:name, :description, :location))
+    @point.user_id = current_user.id
+    @point.save
+    redirect_to root_path
+  end
+
+
 end

@@ -19,14 +19,23 @@
     <% if @saved_trip.present? %>
       <% if !@saved_trip.blurb.present? %>
         <%= simple_form_for :blurb, { url: save_blurb_path } do |f| %>
-          <%= f.text_field :blurb, :input_html => {:rows => 10} %>
+          <%= f.text_area :blurb %>
           <%= f.button :submit, "Save Blurb" %>
         <% end %>
       <% else %>
         <%= simple_form_for :blurb, { url: save_blurb_path } do |f| %>
-          <%= f.text_field :blurb, placeholder: "#{@saved_trip.blurb}", :input_html => {:rows => 10} %>
+          <%= f.text_area :blurb, placeholder: "#{@saved_trip.blurb}" %>
           <%= f.button :submit, "Save Blurb" %>
         <% end %>
+      <% end %>
+    <% end %>
+    <% if current_user %>
+      <h3>Add a point!<h3>
+      <%= simple_form_for @point||=Point.new do |f| %>
+        <%= f.input :name %>
+        <%= f.input :location %>
+        <%= f.input :description %>
+        <%= f.button :submit %>
       <% end %>
     <% end %>
   </div>
@@ -52,10 +61,24 @@ $(window).ready(function(){
   .bindPopup("<b>You are HERE</b>");
 
   <% @venues.each do |venue| %>
-  L.marker([<%= venue.location.lat %>, <%= venue.location.lng %>])
-  .addTo(window.map)
-  .bindPopup("<a href=<%= venue.uri %> target=_blank><%= venue.display_name %></a>");
+    L.marker([<%= venue.location.lat %>, <%= venue.location.lng %>])
+    .addTo(window.map)
+    .bindPopup("<a href=<%= venue.uri %> target=_blank><%= venue.display_name %></a>");
   <% end %>
+
+  var redIcon = L.icon({
+    iconUrl: 'http://commercealouergrenoble.com/images/Map-Marker-Marker-Outside-Azure-icon.png',
+    iconSize:    [38, 40],
+    iconAnchor:  [0, 40],
+    popupAnchor: [19, -30]
+  });
+
+  <% @points.each do |point| %>
+    L.marker([<%= point.lat %>, <%= point.lng %>], {icon: redIcon})
+    .addTo(window.map)
+    .bindPopup("<a href='#' target=_blank><%= point.name %></a>");
+  <% end %>
+
 });
 </script>
 

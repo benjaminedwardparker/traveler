@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208065549) do
+ActiveRecord::Schema.define(version: 20141210195658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "points", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "location"
+    t.text     "description"
+    t.string   "lat"
+    t.string   "lng"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "trips", force: true do |t|
     t.integer  "user_id"

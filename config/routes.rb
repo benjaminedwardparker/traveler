@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'trips/index'
 
   get 'trips/show'
@@ -17,6 +18,16 @@ Rails.application.routes.draw do
   post 'trips' => 'trips#create', as: :create_trip
   resources :trips
   post 'trips/save_blurb' => 'trips#save_blurb', as: :save_blurb
+
+  post 'points' => 'pages#create'
+
+  namespace :api do
+    get 'points/index'
+    get 'points' => 'points#index'
+    post '/points' => 'points#create'
+    put 'points/:id' => 'points#update'
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
