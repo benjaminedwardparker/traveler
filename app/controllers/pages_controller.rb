@@ -2,6 +2,8 @@ class PagesController < ApplicationController
 
   def home
     @points = Point.all
+    @users = User.all
+    @trips = Trip.all
     if params[:id].present?
       @saved_trip = Trip.find(params[:id])
       @lat = @saved_trip.lat
@@ -51,7 +53,7 @@ class PagesController < ApplicationController
     if @start_date
       @trip_time = Date.parse(@start_date).to_time.to_i
       if ((@trip_time - Time.now.to_i) > 604800)
-        forecast = ForecastIO.forecast(@lat,@lng, options = {time: @trip_time,
+        forecast = ForecastIO.forecast(@lat,@lng, options = {time: (@trip_time+43200),
                                                              exclude: 'hourly,daily'})
         @summary = forecast.currently.summary
         @temp = forecast.currently.temperature.round

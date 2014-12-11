@@ -19,7 +19,7 @@
     <% if @saved_trip.present? %>
       <% if !@saved_trip.blurb.present? %>
         <%= simple_form_for :blurb, { url: save_blurb_path } do |f| %>
-          <%= f.text_area :blurb %>
+          <%= f.text_area :blurb, placeholder: "Write a blurb about your trip!" %>
           <%= f.button :submit, "Save Blurb" %>
         <% end %>
       <% else %>
@@ -32,9 +32,9 @@
     <% if current_user %>
       <h3>Add a point!<h3>
       <%= simple_form_for @point||=Point.new do |f| %>
-        <%= f.input :name %>
-        <%= f.input :location %>
-        <%= f.input :description %>
+        <%= f.input :name, placeholder: "What is this?" %>
+        <%= f.input :location, placeholder: "Address or latitute,longitude" %>
+        <%= f.input :description, placeholder: "Tell us why you found this place so interesting!" %>
         <%= f.button :submit %>
       <% end %>
     <% end %>
@@ -44,10 +44,20 @@
 <% if @summary %>
   <h3>The general forecast for your trip is: <%=@summary%> skies, <%=@temp%>º with a 'feels like' of <%=@feels_like%>º, plus or minus <%=@plus_minus%>º<h3>
   <h3>Of course, this is a long-range forecast, so check back before your trip for more accuracy!<h3>
+<% else %>
+  </br>
 <% end %>
 
 <iframe style="background: lightgray" id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=<%= @lat %>&lon=<%= @lng %>&name=<%= @placename %>&color=#237FCE"> </iframe>
-
+</br>
+</br>
+<div style="background: lightgray; text-color: blue">
+  <h3 style="color: #0E2745">Some blurbs from folks about their recent trips:<h3>
+  <% @trips.each do |trip| %>
+    <p style="color: #0E2745"><%=trip.user.name%> went to <%=trip.city%> and writes, <%=trip.blurb%></p>
+    </br>
+  <% end %>
+</div>
 
 <script>
 $(window).ready(function(){
@@ -81,7 +91,7 @@ $(window).ready(function(){
   <% @points.each do |point| %>
     L.marker([<%= point.lat %>, <%= point.lng %>], {icon: redIcon})
     .addTo(window.map)
-    .bindPopup("<a href='#' target=_blank><%= point.name %></a>");
+    .bindPopup("<a href='#' target=_blank><%= point.name %></a><p><%=point.user.name%> writes, <%=point.description%><p>");
   <% end %>
 
 });
