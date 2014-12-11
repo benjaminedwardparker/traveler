@@ -2,7 +2,6 @@ class PagesController < ApplicationController
 
   def home
     @points = Point.all
-    @users = User.all
     @trips = Trip.all
     if params[:id].present?
       @saved_trip = Trip.find(params[:id])
