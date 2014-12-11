@@ -41,6 +41,11 @@
   </div>
 </div>
 
+<% if @summary %>
+  <h3>The general forecast for your trip is: <%=@summary%> skies, <%=@temp%>º with a 'feels like' of <%=@feels_like%>º, plus or minus <%=@plus_minus%>º<h3>
+  <h3>Of course, this is a long-range forecast, so check back before your trip for more accuracy!<h3>
+<% end %>
+
 <iframe style="background: lightgray" id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=<%= @lat %>&lon=<%= @lng %>&name=<%= @placename %>&color=#237FCE"> </iframe>
 
 

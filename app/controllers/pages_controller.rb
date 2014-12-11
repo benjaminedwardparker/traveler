@@ -32,18 +32,34 @@ class PagesController < ApplicationController
         @placename = "Houston"
       end
     end
+    @placename.capitalize!
     remote = Songkickr::Remote.new(ENV["SONGKICK_API_KEY"])
     if params[:start_date].present?
       results = remote.events(location: "geo:#{@lat},#{@lng}",
                               min_date: params[:start_date],
                               max_date: params[:end_date])
+      @start_date = params[:start_date]
     elsif @saved_trip
       results = remote.events(location: "geo:#{@lat},#{@lng}",
                               min_date: @saved_trip.start_date,
                               max_date: @saved_trip.end_date)
+      @start_date = @saved_trip.start_date
     else
       results = remote.events(location: "geo:#{@lat},#{@lng}")
     end
+
+    if @start_date
+      @trip_time = Date.parse(@start_date).to_time.to_i
+      if ((@trip_time - Time.now.to_i) > 604800)
+        forecast = ForecastIO.forecast(@lat,@lng, options = {time: @trip_time,
+                                                             exclude: 'hourly,daily'})
+        @summary = forecast.currently.summary
+        @temp = forecast.currently.temperature.round
+        @feels_like = forecast.currently.apparentTemperature.round
+        @plus_minus = forecast.currently.temperatureError.round
+      end
+    end
+
     @venues = []
     results.results.each do |result|
       if result.location.lat.present?
