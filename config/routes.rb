@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   get 'pages/home'
+  get 'pages/about' => 'pages#about', as: :about
   root to: 'pages#home'
   post 'visiting' => 'pages#visit', as: :visit_city
 

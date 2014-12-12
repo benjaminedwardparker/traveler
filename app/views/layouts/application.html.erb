@@ -18,7 +18,7 @@
     <%= render '/layouts/no_user_navbar' %>
   <% end %>
 
-<div style="height:2em;margin-bottom:2em;">
+<div style="height:2em;margin-bottom:2em;" class='container-fluid'>
   <% if current_user %>
     <h1>Hello, <%=current_user.name%>! </h1>
   <% else %>
@@ -28,6 +28,40 @@
 
 <div class='container-fluid'>
   <%= yield %>
+</div>
+<hr />
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="col-md-4">
+        <ul class="nav nav-pills nav-stacked">
+          <li><%= link_to "About Minstrelr", about_path %></li>
+          <li><%= link_to "Benjamin's Blog", "http://www.tinyurl.com/benedpark"%></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="nav nav-pills nav-stacked">
+          <li><%= link_to "https://cdn3.iconfinder.com/data/icons/free-social-icons/67/twitter_circle_color-512.png", "https://twitter.com/benedpark"%></li>
+          <li><%= link_to "https://camo.githubusercontent.com/a46e11f1754269d31b848b450856d081a1b02461/68747470733a2f2f662e636c6f75642e6769746875622e636f6d2f6173736574732f32383831382f313633323038372f38353063613031612d353737322d313165332d386565652d3230613131636136353334662e706e67","https://github.com/benjaminedwardparker"%></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <ul class="nav nav-pills nav-stacked">
+          <li><a href="#">Product Help</a></li>
+          <li><a href="#">Developer API</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr>
+    <div class="row">
+        <div class="col-lg-12">
+            <ul class="nav nav-pills nav-justified">
+                <li><a href="/">© 2014 Benjamin Edward Parker.</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 </body>

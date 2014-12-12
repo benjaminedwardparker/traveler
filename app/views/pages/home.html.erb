@@ -3,13 +3,10 @@
   <%= f.text_field :city, placeholder: "City" %>
   <%= f.text_field :start_date, :id => "datepicker", placeholder: "Trip Start Date" %>
   <%= f.text_field :end_date, :id => "datepicker2", placeholder: "End Date"%>
-  <%= f.button :submit, "Visit!" %>
+  <%= f.button :submit, "Visit!", :style => "margin-top:-7px" %>
 <% end %>
-<div class="float:right">
-<% if @this_trip.present? %>
-  <%= render 'hidden_trip' %>
-<% end %>
-</div>
+</br>
+
 
 <div class='row'>
   <div class='col-md-9'>
@@ -18,6 +15,11 @@
 </br>
 </br>
   <div class='col-md-3'>
+    <div class="float:right">
+    <% if @this_trip.present? %>
+      <%= render 'hidden_trip' %>
+    <% end %>
+    </div>
     <% if @saved_trip.present? %>
       <% if !@saved_trip.blurb.present? %>
         <%= simple_form_for :blurb, { url: save_blurb_path } do |f| %>
@@ -32,13 +34,17 @@
       <% end %>
     <% end %>
     <% if current_user %>
-      <h3>Add a point!<h3>
+      <h3>Add a point to the map!<h3>
       <%= simple_form_for @point||=Point.new do |f| %>
-        <%= f.input :name, placeholder: "What is this?" %>
+        <%= f.input :name, placeholder: "What is here at this point?" %>
         <%= f.input :location, placeholder: "Address or latitute,longitude" %>
         <%= f.input :description, placeholder: "Tell us why you found this place so interesting!" %>
         <%= f.button :submit %>
       <% end %>
+    <% else %>
+      <div style="padding: 1em">
+        <p><%= link_to "Sign up", new_user_registration_path %> in order to be able to save your trip, post a blurb so that others can read about it, and even create your own points on the map!</p>
+      </div>
     <% end %>
   </div>
 </div>
@@ -75,7 +81,7 @@ $(window).ready(function(){
 
   L.marker([<%= @lat %>, <%= @lng %>])
   .addTo(window.map)
-  .bindPopup("<b>You are HERE</b>");
+  .bindPopup("<b><%=@placename%></b>");
 
   <% @venues.each do |venue| %>
     L.marker([<%= venue.location.lat %>, <%= venue.location.lng %>])
