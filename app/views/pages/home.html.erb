@@ -62,8 +62,10 @@
 <div style="background: lightgray; text-color: blue">
   <h3 style="color: #0E2745">Some blurbs from folks about their recent trips:<h3>
   <% @trips.each do |trip| %>
-    <p style="color: #0E2745"><%=trip.user.name%> went to <%=trip.city%> and writes, <%=trip.blurb%></p>
-    </br>
+    <% if trip.blurb %>
+      <p style="color: #0E2745"><%=trip.user.name%> went to <%=trip.city%> and writes, <%=trip.blurb%></p>
+      </br>
+    <% end %>
   <% end %>
 </div>
 
