@@ -67,14 +67,18 @@
 <iframe style="background: lightgray" id="forecast_embed" type="text/html" frameborder="0" height="245" width="100%" src="http://forecast.io/embed/#lat=<%= @lat %>&lon=<%= @lng %>&name=<%= @placename %>&color=#237FCE"> </iframe>
 </br>
 </br>
-<div style="background: lightgray; text-color: blue">
-  <h3 style="color: #0E2745">Some blurbs from folks about their recent trips:<h3>
-  <% @trips.each do |trip| %>
-    <% if trip.blurb %>
-      <p style="color: #0E2745"><%=trip.user.name%> went to <%=trip.city%> and writes, <%=trip.blurb%></p>
-      </br>
-    <% end %>
-  <% end %>
+<div class="jumbotron" style='padding:2em;background:lightgray'>
+  <div style="background: lightgray; text-color: blue">
+    <h2 style="color: #0E2745;padding-bottom:1.5em">Some blurbs from folks about their recent trips:<h3>
+    <ul style="color: #0E2745">
+      <% @trips.each do |trip| %>
+        <% if trip.blurb %>
+          <li><p style="color: #0E2745"><%=trip.user.name%> went to <%=trip.city%> and writes, <%=trip.blurb%></p></li>
+          </br>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 </div>
 
 <script>
