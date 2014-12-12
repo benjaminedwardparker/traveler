@@ -18,13 +18,7 @@
     <%= render '/layouts/no_user_navbar' %>
   <% end %>
 
-<div style="height:2em;margin-bottom:2em;" class='container-fluid'>
-  <% if current_user %>
-    <h1>Hello, <%=current_user.name%>! </h1>
-  <% else %>
-    <h1>Hello!<h1>
-  <% end %>
-</div>
+
 
 <div class='container-fluid'>
   <%= yield %>
@@ -56,9 +50,9 @@
     <div class="row">
         <div class="col-lg-12">
             <ul class="nav nav-pills nav-justified">
-                <li><a href="/">© 2014 Benjamin Edward Parker.</a></li>
-                <li><a href="#">Terms of Service</a></li>
-                <li><a href="#">Privacy</a></li>
+                <li><a href="/">© 2014 Benjamin Edward Parker&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                <!-- <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Privacy</a></li> -->
             </ul>
         </div>
     </div>

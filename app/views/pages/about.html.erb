@@ -1,1 +1,16 @@
-The About Page
+<div class="container-fluid" style='padding:3em;padding-right:7em'>
+  <div class="jumbotron" style='padding:3em'>
+    <h1 style="text-align:center;padding-bottom:1em">About Minstrelr!</h1>
+    <p>I wanted a place for people to go when they are about to go on a trip, to see what concerts will be happening in the area (on a map), and what the weather will be like.</p>
+    <p>If they sign up, users will be able to save the trip, and write a blog post about their trip when they come back, as well as add markers to the map for points of interest they visited.</p>
+    <p>Blue markers will be shown on the map for upcoming concerts.  If dates are entered, only concerts happening between those dates will be shown.  When clicked, the marker will show the concert, with date, as a link to the Songkick page for the concerts for more info, tickets, etc.</p>
+    <p>Red markers are points of interest entered by registered users of the site.  When clicked, they will show the name and description entered by the user.</p>
+    <p>Weather forecast is always shown for the upcoming 7 days for the city selected.  If dates are entered for a trip, and the trip is more than a week in the future, then a general forecast for the city will be given as well.</p>
+    <p>At the bottom of the home page, blurbs written by users about their trips will be shown.</p>
+    <p>Upcoming concert information is provided by the Songkick API, while forecast info is provided the the Forecast.io API.</p>
+    <p>An API is provided by Minstrelr at the endpoint <%=link_to "/api/points", api_points_path %> which provides data on user-entered points of interest in JSON format.</p>
+    <p>Feel free to use the site without signing up, but I hope you will and become part of the Minstrelr community!</p>
+    <p>In case I haven't already personally told you, this site is my final project for The Iron Yard Academy!  I'm proud to say that Ruby on Rails and I are now friends.</p>
+    <p>Thanks for checking out Minstrelr!  I hope you find it useful.  -Benjamin<p>
+  </div>
+</div>
