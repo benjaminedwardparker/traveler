@@ -73,7 +73,7 @@
     <ul style="color: #0E2745">
       <% @trips.each do |trip| %>
         <% if trip.blurb %>
-          <li><p style="color: #0E2745"><%=trip.user.name.titleize%> went to <%=trip.city%> and writes, <%=trip.blurb%></p></li>
+          <li><p style="color: #0E2745"><%=trip.user.name.titleize%> went to <%=trip.city.titleize%> and writes, <%=trip.blurb%></p></li>
           </br>
         <% end %>
       <% end %>
