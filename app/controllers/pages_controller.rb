@@ -34,10 +34,10 @@ class PagesController < ApplicationController
       end
     end
     @placename.capitalize!
-    if @placename = 'Houston'
-      @lat = 29.7628
-      @lng = -95.3831
-    end
+    # if @placename = 'Houston'
+    #   @lat = 29.7628
+    #   @lng = -95.3831
+    # end
     remote = Songkickr::Remote.new(ENV["SONGKICK_API_KEY"])
     if params[:start_date].present?
       results = remote.events(location: "geo:#{@lat},#{@lng}",
